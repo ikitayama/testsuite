@@ -10,7 +10,7 @@ set (CMAKE_CXX_COMPILER ${CMAKE_C_COMPILER})
 set (CMAKE_EXE_LINKER_FLAGS "${MUTATEE_CXXFLAGS_NATIVE} ${MUTATEE_LDFLAGS_NATIVE}  ")
 include (../../../../../../srclists.cmake)
 add_executable (symtab_group_test.dyn_pgCC_64_none_none ${SOURCE_LIST_15})
-target_link_libraries (symtab_group_test.dyn_pgCC_64_none_none testA)
+target_link_libraries (symtab_group_test.dyn_pgCC_64_none_none testA_64)
 
 
 INSTALL (TARGETS

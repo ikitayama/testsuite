@@ -112,13 +112,10 @@ def print_one_cmakefile(exe, abi, stat_dyn, pic, opt, module, path, mlist, platf
       if len(m['libraries']) > 0:
          out.write("target_link_libraries (%s" % utils.mutatee_binary(m, platform, info))
          for l in m['libraries']:
+            # We abi-tag the compiled libraries
             lib_ext = ''
-            
-            # This could be handled better....
-            if m['abi'] == '32':
-               if l == 'testA':
-                  lib_ext = '_m32'
-
+            if (l == "testA") | (l == "testB") | (l == "Test12"):
+               lib_ext = '_%s' % m['abi']
             out.write(" %s%s" % (l, lib_ext))
          out.write(")\n")
          

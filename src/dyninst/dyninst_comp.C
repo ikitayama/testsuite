@@ -806,19 +806,14 @@ void addLibArchExt(char *dest, unsigned int dest_max_len, int psize)
    dest_len = strlen(dest);
 
    // Patch up alternate ABI filenames
-#if defined(rs6000_ibm_aix64_test)
-   if(psize == 4) {
-     strncat(dest, "_32", dest_max_len - dest_len);
-     dest_len += 3;
-   }
-#endif
-
-#if defined(arch_x86_64_test)
    if (psize == 4) {
-      strncat(dest,"_m32", dest_max_len - dest_len);
-      dest_len += 4;   
+      strncat(dest,"_32", dest_max_len - dest_len);
+      dest_len += 3;   
    }
-#endif
+   else if (psize == 8) {
+      strncat(dest, "_64", dest_max_len - dest_len);
+      dest_len += 3;
+   }
 
 #if defined(os_windows_test)
    strncat(dest, ".dll", dest_max_len - dest_len);

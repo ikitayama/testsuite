@@ -244,16 +244,16 @@ test_results_t test_callback_2_Mutator::executeTest()
 
 	// load libtest12.so -- currently only used by subtest 5, but make it generally
 	// available
-	const char *libname = "./libTest12.so";    
+   const char *libname;
 	test7err = false;
 	test7done = false;
 	callback_counter = 0;
 	elog.resize(0);
 
-#if defined(arch_x86_64_test)
 	if (appProc->getAddressWidth() == 4)
-		libname = "./libTest12_m32.so";
-#endif
+           libname = "./libTest12_32.so";
+        else 
+           libname = "./libTest12_64.so";
 
 	dprintf("%s[%d]:  loading test library: %s\n", __FILE__, __LINE__, libname);
 

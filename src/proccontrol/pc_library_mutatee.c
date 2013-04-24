@@ -37,13 +37,8 @@
 #if !defined(os_windows_test)
 #include <dlfcn.h>
 
-#if defined(arch_x86_64_test)
-#define LIBTESTA (sizeof(void*) == 8) ? "./libtestA.so" : "./libtestA_m32.so"
-#define LIBTESTB (sizeof(void*) == 8) ? "./libtestB.so" : "./libtestB_m32.so"
-#else
-#define LIBTESTA "./libtestA.so"
-#define LIBTESTB "./libtestB.so"
-#endif
+#define LIBTESTA (sizeof(void*) == 8) ? "./libtestA_64.so" : "./libtestA_32.so"
+#define LIBTESTB (sizeof(void*) == 8) ? "./libtestB_64.so" : "./libtestB_32.so"
 
 void *openLib(const char *lib)
 {

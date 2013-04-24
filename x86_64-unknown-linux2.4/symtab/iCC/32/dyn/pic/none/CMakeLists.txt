@@ -10,7 +10,7 @@ set (CMAKE_CXX_COMPILER ${CMAKE_C_COMPILER})
 set (CMAKE_EXE_LINKER_FLAGS "${MUTATEE_LDFLAGS_GNU} -Di386_unknown_linux2_4 -Dm32_test -Xlinker -export-dynamic")
 include (../../../../../../srclists.cmake)
 add_executable (symtab_group_test.dyn_icpc_32_pic_none ${SOURCE_LIST_15})
-target_link_libraries (symtab_group_test.dyn_icpc_32_pic_none testA_m32)
+target_link_libraries (symtab_group_test.dyn_icpc_32_pic_none testA_32)
 add_executable (test_exception.dyn_icpc_32_pic_none ${SOURCE_LIST_69})
 
 

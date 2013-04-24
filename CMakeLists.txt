@@ -129,25 +129,43 @@ add_library (testB SHARED src/libtestB.c)
 add_library (Test12 SHARED src/dyninst/libTest12.c)
 install (TARGETS testA testB Test12 LIBRARY DESTINATION ${INSTALL_DIR})
 
-if ((${MUTATEE_gcc32dyn} STREQUAL "1") AND (${MUTATEE_gcc64dyn} STREQUAL "1"))
-add_library (testA_m32 SHARED src/libtestA.c)
-add_library (testB_m32 SHARED src/libtestB.c)
-add_library (Test12_m32 SHARED src/dyninst/libTest12.c)
-install (TARGETS testA_m32 testB_m32 Test12_m32 LIBRARY DESTINATION ${INSTALL_DIR})
+if (${MUTATEE_gcc32dyn} AND (${MUTATEE_gcc32dyn} STREQUAL "1"))
+set (BUILD_LIBS_32 1)
+endif()
+if (${MUTATEE_gcc64dyn} AND (${MUTATEE_gcc64dyn} STREQUAL "1"))
+set (BUILD_LIBS_64 1)
+endif()
 
-set_target_properties (testA_m32
+if (BUILD_LIBS_32)
+add_library (testA_32 SHARED src/libtestA.c)
+add_library (testB_32 SHARED src/libtestB.c)
+add_library (Test12_32 SHARED src/dyninst/libTest12.c)
+install (TARGETS testA_32 testB_32 Test12_32 LIBRARY DESTINATION ${INSTALL_DIR})
+
+if (BUILD_LIBS_64)
+set_target_properties (testA_32
                       PROPERTIES
                       COMPILE_FLAGS "-m32 -Dm32_test"
                       LINK_FLAGS "-m32")
-set_target_properties (testB_m32
+set_target_properties (testB_32
                       PROPERTIES
                       COMPILE_FLAGS "-m32 -Dm32_test"
                       LINK_FLAGS "-m32")
-set_target_properties (Test12_m32
+set_target_properties (Test12_32
                       PROPERTIES
                       COMPILE_FLAGS "-m32 -Dm32_test"
                       LINK_FLAGS "-m32")
 endif()
+endif()
+
+if (BUILD_LIBS_64)
+add_library (testA_64 SHARED src/libtestA.c)
+add_library (testB_64 SHARED src/libtestB.c)
+add_library (Test12_64 SHARED src/dyninst/libTest12.c)
+install (TARGETS testA_64 testB_64 Test12_64 LIBRARY DESTINATION ${INSTALL_DIR})
+endif()
+
+
 
 include (${DYNINST_PLATFORM}/cmake-mutatees.txt)
 

@@ -260,10 +260,11 @@ test_results_t test_thread_5_Mutator::executeTest() {
     // load libtest12.so -- currently only used by subtest 5, but make it generally
     // available
     const char *libname = "./libTest12.so";    
-#if defined(arch_x86_64_test)
     if (appThread->getProcess()->getAddressWidth() == 4)
-       libname = "./libTest12_m32.so";
-#endif
+       libname = "./libTest12_32.so";
+    else
+       libname = "./libTest12_64.so";
+
     dprintf("%s[%d]:  loading test library: %s\n", __FILE__, __LINE__, libname);
     if (!appProc->loadLibrary(libname)) {
       logerror("TERMINATE: %s[%d]:  failed to load library %s, cannot proceed\n", 

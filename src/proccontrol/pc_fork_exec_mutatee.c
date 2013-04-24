@@ -103,10 +103,12 @@ static int threadFunc(int myid, void *data)
 static void loadTestA()
 {
    void *result;
-   result = dlopen("./libtestA.so", RTLD_LAZY);
-   if (result) 
-      return;
-   result = dlopen("./libtestA_m32.so", RTLD_LAZY);
+   if (sizeof(long) == 4) {
+      result = dlopen("./libtestA_32.so", RTLD_LAZY);
+   }
+   else {
+      result = dlopen("./libtestA_64.so", RTLD_LAZY);
+   }
    assert(result);
 }
 #endif

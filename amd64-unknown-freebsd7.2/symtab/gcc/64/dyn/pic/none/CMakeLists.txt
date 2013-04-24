@@ -10,7 +10,7 @@ set (CMAKE_CXX_COMPILER ${CMAKE_C_COMPILER})
 set (CMAKE_EXE_LINKER_FLAGS "${MUTATEE_LDFLAGS_GNU}  -Wl,-export-dynamic")
 include (../../../../../../srclists.cmake)
 add_executable (symtab_group_test.dyn_gcc_64_pic_none ${SOURCE_LIST_19})
-target_link_libraries (symtab_group_test.dyn_gcc_64_pic_none testA)
+target_link_libraries (symtab_group_test.dyn_gcc_64_pic_none testA_64)
 
 
 INSTALL (TARGETS

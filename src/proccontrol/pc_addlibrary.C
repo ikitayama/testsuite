@@ -108,13 +108,13 @@ static Process::cb_ret_t on_library(Event::const_ptr ev)
 
 #if !defined(os_windows_test)
 
-#define LIBTESTA "./libtestA.so"
-#define LIBTESTA_32 "./libtestA_m32.so"
+#define LIBTESTA_64 "./libtestA_64.so"
+#define LIBTESTA_32 "./libtestA_32.so"
 
 #else
 
-#define LIBTESTA "./libtestA.dll"
-#define LIBTESTA_32 "./libtestA_m32.dll"
+#define LIBTESTA_64 "./libtestA_64.dll"
+#define LIBTESTA_32 "./libtestA_32.dll"
 
 #endif
 
@@ -134,17 +134,11 @@ test_results_t pc_addlibraryMutator::executeTest()
       Process::ptr proc = *i;
 
       std::string libname;
-      if (sizeof(void *) == 8) {
-         // 64-bit platform...
-         if (Dyninst::getArchAddressWidth(proc->getArchitecture()) == 8) {
-            libname = LIBTESTA;
-         }
-         else {
-            libname = LIBTESTA_32;
-         }
+      if (Dyninst::getArchAddressWidth(proc->getArchitecture()) == 8) {
+         libname = LIBTESTA_64;
       }
       else {
-         libname = LIBTESTA;
+         libname = LIBTESTA_32;
       }
 
       bool result = proc->addLibrary(libname);

@@ -34,6 +34,7 @@
 
 #include <dlfcn.h>
 #include <fcntl.h>
+#include <assert.h>
 
 int called_entry = 0;
 int called_exit = 0;
@@ -76,11 +77,17 @@ void exit_call(const char* msg)
 int init_fini_callback_mutatee()
 {
     void* libhandle;
-    libhandle = dlopen("libtestA.so", RTLD_LAZY);
-    if(!libhandle)
-        libhandle = dlopen("libtestA_m32.so", RTLD_LAZY);
+    if (sizeof(long) == 4) {
+       libhandle = dlopen("libtestA_32.so", RTLD_LAZY);
+    }
+    else if (sizeof(long) == 8) {
+       libhandle = dlopen("libtestA_m32.so", RTLD_LAZY);
+    }
+    else {
+       assert(0);
+    }
     if(libhandle)
-    dlclose(libhandle);
+       dlclose(libhandle);
     test_passes("init_fini_callback");
     return 0;
 }
