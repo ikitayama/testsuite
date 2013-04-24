@@ -129,7 +129,7 @@ add_library (testB SHARED src/libtestB.c)
 add_library (Test12 SHARED src/dyninst/libTest12.c)
 install (TARGETS testA testB Test12 LIBRARY DESTINATION ${INSTALL_DIR})
 
-if (${MUTATEE_gcc64dyn} AND ${MUTATEE_gcc32dyn})
+if ((${MUTATEE_gcc32dyn} STREQUAL "1") AND (${MUTATEE_gcc64dyn} STREQUAL "1"))
 add_library (testA_m32 SHARED src/libtestA.c)
 add_library (testB_m32 SHARED src/libtestB.c)
 add_library (Test12_m32 SHARED src/dyninst/libTest12.c)
