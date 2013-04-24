@@ -129,11 +129,17 @@ add_library (testB SHARED src/libtestB.c)
 add_library (Test12 SHARED src/dyninst/libTest12.c)
 install (TARGETS testA testB Test12 LIBRARY DESTINATION ${INSTALL_DIR})
 
-if (${MUTATEE_gcc32dyn} AND (${MUTATEE_gcc32dyn} STREQUAL "1"))
+# Can someone figure out how to clean this up? 
+if (${MUTATEE_gcc32dyn})
+if (${MUTATEE_gcc32dyn} STREQUAL "1")
 set (BUILD_LIBS_32 1)
 endif()
-if (${MUTATEE_gcc64dyn} AND (${MUTATEE_gcc64dyn} STREQUAL "1"))
+endif()
+
+if (${MUTATEE_gcc64dyn}) 
+if (${MUTATEE_gcc64dyn} STREQUAL "1")
 set (BUILD_LIBS_64 1)
+endif()
 endif()
 
 if (BUILD_LIBS_32)
