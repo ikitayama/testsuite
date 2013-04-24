@@ -1080,7 +1080,7 @@ test_exclude_compiler('test5_9', 'pgCC').
 test_mem_mutatee_aux(P, Aux) :-
     (
         platform('power32', 'aix', _, P) -> Aux = 'test6LS-power.s';
-        platform('i386', 'linux', _, P) -> Aux = 'test6LS-x86.asm';
+        platform('i386', 'linux', _, P) -> Aux = 'test6LS-x86.s';
         platform('i386', 'windows', _, P) -> Aux = 'test6LS-masm.asm';
         platform('x86_64', 'linux', _, P) -> Aux = 'test6LS-x86_64.s';
         platform('power32', 'linux', _, P) -> Aux = 'test6LS-powerpc.S';

@@ -14,8 +14,6 @@
 	.size rip_relative_load_address,8
         .global ia32features
 .type ia32features,@function
-        .global amd_features
-                .type amd_featuresm,@function                            
 
                 
 rip_relative_load_address:
