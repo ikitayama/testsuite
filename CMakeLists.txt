@@ -14,9 +14,10 @@ set (INSTALL_DIR "bin/testsuite" CACHE PATH "Testsuite installation directory")
 # Build rules for the test libraries (libtestdyninst, libtestproccontrol, etc.)
 # and the executables
 
+# We want to build assembly files with gcc
 if (UNIX)
 enable_language(ASM-ATT)
-endif(UNIX)
+endif (UNIX)
 
 foreach (def ${DYNINST_INTERNAL_DEFINES})
   # add_definitions doesn't seem to get pulled in; that's okay, since

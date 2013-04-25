@@ -1083,8 +1083,8 @@ test_mem_mutatee_aux(P, Aux) :-
         platform('i386', 'linux', _, P) -> Aux = 'test6LS-x86.s';
         platform('i386', 'windows', _, P) -> Aux = 'test6LS-masm.asm';
         platform('x86_64', 'linux', _, P) -> Aux = 'test6LS-x86_64.s';
-        platform('power32', 'linux', _, P) -> Aux = 'test6LS-powerpc.S';
-        platform('power64', 'linux', _, P) -> Aux = 'test6LS-powerpc.S';
+        platform('power32', 'linux', _, P) -> Aux = 'test6LS-powerpc.s';
+        platform('power64', 'linux', _, P) -> Aux = 'test6LS-powerpc.s';
         platform('i386', 'freebsd', _, P) -> Aux = 'test6LS-x86.asm';
         platform('x86_64', 'freebsd', _, P) -> Aux = 'test6LS-x86_64.s'
     ).

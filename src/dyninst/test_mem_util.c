@@ -202,6 +202,12 @@ const struct reduction ccRed = { 0, 0, 0, 1, 91 };
  || defined(i386_unknown_nt4_0_test) \
  || (defined(os_freebsd_test) && defined(arch_x86_test))
 
+int divarw[4];
+float dfvars[4];
+double dfvard[4];
+long double dfvart;
+unsigned char dlarge[512] = "keep the interface small and easy to understand.";
+
 
 int eaExpOffset[] =    { /* 0-3 */ 0,0,0,0,
                          /* 4-10 */ 0,0,0,0,0,0,0,
