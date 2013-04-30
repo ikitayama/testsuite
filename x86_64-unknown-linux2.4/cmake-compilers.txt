@@ -1,144 +1,96 @@
 IF (DEFINED M_gnu_cc)
-CHECK_MUTATEE_COMPILER ("${M_gnu_cc}"
-	"-Wl,-export-dynamic -ldl -ldl"
-	"-Wl,-export-dynamic -ldl"
-	dummyMUTATEE_gcc32dyn)
-IF (dummyMUTATEE_gcc32dyn)
-SET (MUTATEE_gcc32dyn 1 CACHE STRING "Build mutatess: compiler gcc, ABI 32-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_gcc32dyn ON CACHE STRING "Build mutatees: compiler gcc, ABI 32-bit, dyn linked")
+SET (BUILD_LIBS_32 1)
+ELSE()
+SET (MUTATEE_gcc32dyn OFF CACHE STRING "Build mutatees: compiler gcc, ABI 32-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_gnu_cc)
-CHECK_MUTATEE_COMPILER ("${M_gnu_cc}"
-	"-static -ldl -ldl"
-	"-static -ldl"
-	dummyMUTATEE_gcc32stat)
-IF (dummyMUTATEE_gcc32stat)
-SET (MUTATEE_gcc32stat 1 CACHE STRING "Build mutatess: compiler gcc, ABI 32-bit, stat linked")
-ENDIF()
+SET (MUTATEE_gcc32stat ON CACHE STRING "Build mutatees: compiler gcc, ABI 32-bit, stat linked")
+SET (BUILD_LIBS_32 1)
+ELSE()
+SET (MUTATEE_gcc32stat OFF CACHE STRING "Build mutatees: compiler gcc, ABI 32-bit, stat linked")
 ENDIF()
 IF (DEFINED M_gnu_cc)
-CHECK_MUTATEE_COMPILER ("${M_gnu_cc}"
-	"-Wl,-export-dynamic -ldl -ldl"
-	"-Wl,-export-dynamic -ldl"
-	dummyMUTATEE_gcc64dyn)
-IF (dummyMUTATEE_gcc64dyn)
-SET (MUTATEE_gcc64dyn 1 CACHE STRING "Build mutatess: compiler gcc, ABI 64-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_gcc64dyn ON CACHE STRING "Build mutatees: compiler gcc, ABI 64-bit, dyn linked")
+SET (BUILD_LIBS_64 1)
+ELSE()
+SET (MUTATEE_gcc64dyn OFF CACHE STRING "Build mutatees: compiler gcc, ABI 64-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_gnu_cc)
-CHECK_MUTATEE_COMPILER ("${M_gnu_cc}"
-	"-static -ldl -ldl"
-	"-static -ldl"
-	dummyMUTATEE_gcc64stat)
-IF (dummyMUTATEE_gcc64stat)
-SET (MUTATEE_gcc64stat 1 CACHE STRING "Build mutatess: compiler gcc, ABI 64-bit, stat linked")
-ENDIF()
+SET (MUTATEE_gcc64stat ON CACHE STRING "Build mutatees: compiler gcc, ABI 64-bit, stat linked")
+SET (BUILD_LIBS_64 1)
+ELSE()
+SET (MUTATEE_gcc64stat OFF CACHE STRING "Build mutatees: compiler gcc, ABI 64-bit, stat linked")
 ENDIF()
 IF (DEFINED M_intel_CC_32)
-CHECK_MUTATEE_COMPILER ("${M_intel_CC_32}"
-	"-Xlinker -export-dynamic -ldl -ldl"
-	"-Xlinker -export-dynamic -ldl"
-	dummyMUTATEE_iCC32dyn)
-IF (dummyMUTATEE_iCC32dyn)
-SET (MUTATEE_iCC32dyn 1 CACHE STRING "Build mutatess: compiler iCC, ABI 32-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_iCC32dyn ON CACHE STRING "Build mutatees: compiler iCC, ABI 32-bit, dyn linked")
+SET (BUILD_LIBS_32 1)
+ELSE()
+SET (MUTATEE_iCC32dyn OFF CACHE STRING "Build mutatees: compiler iCC, ABI 32-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_intel_CC)
-CHECK_MUTATEE_COMPILER ("${M_intel_CC}"
-	"-Xlinker -export-dynamic -ldl -ldl"
-	"-Xlinker -export-dynamic -ldl"
-	dummyMUTATEE_iCC64dyn)
-IF (dummyMUTATEE_iCC64dyn)
-SET (MUTATEE_iCC64dyn 1 CACHE STRING "Build mutatess: compiler iCC, ABI 64-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_iCC64dyn ON CACHE STRING "Build mutatees: compiler iCC, ABI 64-bit, dyn linked")
+SET (BUILD_LIBS_64 1)
+ELSE()
+SET (MUTATEE_iCC64dyn OFF CACHE STRING "Build mutatees: compiler iCC, ABI 64-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_intel_cc_32)
-CHECK_MUTATEE_COMPILER ("${M_intel_cc_32}"
-	"-Xlinker -export-dynamic -ldl -ldl"
-	"-Xlinker -export-dynamic -ldl"
-	dummyMUTATEE_icc32dyn)
-IF (dummyMUTATEE_icc32dyn)
-SET (MUTATEE_icc32dyn 1 CACHE STRING "Build mutatess: compiler icc, ABI 32-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_icc32dyn ON CACHE STRING "Build mutatees: compiler icc, ABI 32-bit, dyn linked")
+SET (BUILD_LIBS_32 1)
+ELSE()
+SET (MUTATEE_icc32dyn OFF CACHE STRING "Build mutatees: compiler icc, ABI 32-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_intel_cc)
-CHECK_MUTATEE_COMPILER ("${M_intel_cc}"
-	"-Xlinker -export-dynamic -ldl -ldl"
-	"-Xlinker -export-dynamic -ldl"
-	dummyMUTATEE_icc64dyn)
-IF (dummyMUTATEE_icc64dyn)
-SET (MUTATEE_icc64dyn 1 CACHE STRING "Build mutatess: compiler icc, ABI 64-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_icc64dyn ON CACHE STRING "Build mutatees: compiler icc, ABI 64-bit, dyn linked")
+SET (BUILD_LIBS_64 1)
+ELSE()
+SET (MUTATEE_icc64dyn OFF CACHE STRING "Build mutatees: compiler icc, ABI 64-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_gnu_cxx)
-CHECK_MUTATEE_COMPILER ("${M_gnu_cxx}"
-	"-Wl,-export-dynamic -ldl -ldl"
-	"-Wl,-export-dynamic -ldl"
-	dummyMUTATEE_gxx32dyn)
-IF (dummyMUTATEE_gxx32dyn)
-SET (MUTATEE_gxx32dyn 1 CACHE STRING "Build mutatess: compiler g++, ABI 32-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_gxx32dyn ON CACHE STRING "Build mutatees: compiler g++, ABI 32-bit, dyn linked")
+SET (BUILD_LIBS_32 1)
+ELSE()
+SET (MUTATEE_gxx32dyn OFF CACHE STRING "Build mutatees: compiler g++, ABI 32-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_gnu_cxx)
-CHECK_MUTATEE_COMPILER ("${M_gnu_cxx}"
-	"-static -ldl -ldl"
-	"-static -ldl"
-	dummyMUTATEE_gxx32stat)
-IF (dummyMUTATEE_gxx32stat)
-SET (MUTATEE_gxx32stat 1 CACHE STRING "Build mutatess: compiler g++, ABI 32-bit, stat linked")
-ENDIF()
+SET (MUTATEE_gxx32stat ON CACHE STRING "Build mutatees: compiler g++, ABI 32-bit, stat linked")
+SET (BUILD_LIBS_32 1)
+ELSE()
+SET (MUTATEE_gxx32stat OFF CACHE STRING "Build mutatees: compiler g++, ABI 32-bit, stat linked")
 ENDIF()
 IF (DEFINED M_gnu_cxx)
-CHECK_MUTATEE_COMPILER ("${M_gnu_cxx}"
-	"-Wl,-export-dynamic -ldl -ldl"
-	"-Wl,-export-dynamic -ldl"
-	dummyMUTATEE_gxx64dyn)
-IF (dummyMUTATEE_gxx64dyn)
-SET (MUTATEE_gxx64dyn 1 CACHE STRING "Build mutatess: compiler g++, ABI 64-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_gxx64dyn ON CACHE STRING "Build mutatees: compiler g++, ABI 64-bit, dyn linked")
+SET (BUILD_LIBS_64 1)
+ELSE()
+SET (MUTATEE_gxx64dyn OFF CACHE STRING "Build mutatees: compiler g++, ABI 64-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_gnu_cxx)
-CHECK_MUTATEE_COMPILER ("${M_gnu_cxx}"
-	"-static -ldl -ldl"
-	"-static -ldl"
-	dummyMUTATEE_gxx64stat)
-IF (dummyMUTATEE_gxx64stat)
-SET (MUTATEE_gxx64stat 1 CACHE STRING "Build mutatess: compiler g++, ABI 64-bit, stat linked")
-ENDIF()
+SET (MUTATEE_gxx64stat ON CACHE STRING "Build mutatees: compiler g++, ABI 64-bit, stat linked")
+SET (BUILD_LIBS_64 1)
+ELSE()
+SET (MUTATEE_gxx64stat OFF CACHE STRING "Build mutatees: compiler g++, ABI 64-bit, stat linked")
 ENDIF()
 IF (DEFINED M_pg_cc)
-CHECK_MUTATEE_COMPILER ("${M_pg_cc}"
-	" -ldl -ldl"
-	" -ldl"
-	dummyMUTATEE_pgcc32dyn)
-IF (dummyMUTATEE_pgcc32dyn)
-SET (MUTATEE_pgcc32dyn 1 CACHE STRING "Build mutatess: compiler pgcc, ABI 32-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_pgcc32dyn ON CACHE STRING "Build mutatees: compiler pgcc, ABI 32-bit, dyn linked")
+SET (BUILD_LIBS_32 1)
+ELSE()
+SET (MUTATEE_pgcc32dyn OFF CACHE STRING "Build mutatees: compiler pgcc, ABI 32-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_pg_cc)
-CHECK_MUTATEE_COMPILER ("${M_pg_cc}"
-	" -ldl -ldl"
-	" -ldl"
-	dummyMUTATEE_pgcc64dyn)
-IF (dummyMUTATEE_pgcc64dyn)
-SET (MUTATEE_pgcc64dyn 1 CACHE STRING "Build mutatess: compiler pgcc, ABI 64-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_pgcc64dyn ON CACHE STRING "Build mutatees: compiler pgcc, ABI 64-bit, dyn linked")
+SET (BUILD_LIBS_64 1)
+ELSE()
+SET (MUTATEE_pgcc64dyn OFF CACHE STRING "Build mutatees: compiler pgcc, ABI 64-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_pg_cxx)
-CHECK_MUTATEE_COMPILER ("${M_pg_cxx}"
-	" -ldl -ldl"
-	" -ldl"
-	dummyMUTATEE_pgCC32dyn)
-IF (dummyMUTATEE_pgCC32dyn)
-SET (MUTATEE_pgCC32dyn 1 CACHE STRING "Build mutatess: compiler pgCC, ABI 32-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_pgCC32dyn ON CACHE STRING "Build mutatees: compiler pgCC, ABI 32-bit, dyn linked")
+SET (BUILD_LIBS_32 1)
+ELSE()
+SET (MUTATEE_pgCC32dyn OFF CACHE STRING "Build mutatees: compiler pgCC, ABI 32-bit, dyn linked")
 ENDIF()
 IF (DEFINED M_pg_cxx)
-CHECK_MUTATEE_COMPILER ("${M_pg_cxx}"
-	" -ldl -ldl"
-	" -ldl"
-	dummyMUTATEE_pgCC64dyn)
-IF (dummyMUTATEE_pgCC64dyn)
-SET (MUTATEE_pgCC64dyn 1 CACHE STRING "Build mutatess: compiler pgCC, ABI 64-bit, dyn linked")
-ENDIF()
+SET (MUTATEE_pgCC64dyn ON CACHE STRING "Build mutatees: compiler pgCC, ABI 64-bit, dyn linked")
+SET (BUILD_LIBS_64 1)
+ELSE()
+SET (MUTATEE_pgCC64dyn OFF CACHE STRING "Build mutatees: compiler pgCC, ABI 64-bit, dyn linked")
 ENDIF()

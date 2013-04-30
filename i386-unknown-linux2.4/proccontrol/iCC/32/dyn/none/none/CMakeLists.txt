@@ -8,6 +8,8 @@ set (CMAKE_CXX_FLAGS_DEBUG ${CMAKE_C_FLAGS_DEBUG})
 set (CMAKE_CXX_FLAGS_RELEASE ${CMAKE_C_FLAGS_RELEASE})
 set (CMAKE_CXX_COMPILER ${CMAKE_C_COMPILER})
 set (CMAKE_EXE_LINKER_FLAGS "${MUTATEE_LDFLAGS_GNU}  -Xlinker -export-dynamic")
+set (CMAKE_SHARED_LIBRARY_LINK_C_FLAGS )
+set (CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS )
 include (../../../../../../srclists.cmake)
 add_executable (pc_exec_targ.dyn_icpc_32_none_none ${SOURCE_LIST_11})
 

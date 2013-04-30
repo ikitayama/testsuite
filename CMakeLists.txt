@@ -111,7 +111,12 @@ install (TARGETS
 
 include (${DYNINST_PLATFORM}/cmake-mutators.txt)
 
-if (UNIX)
+if (DYNINST_PLATFORM MATCHES "bgq")
+FIND_PROGRAM(M_bg_cc NAMES mpixlc)
+FIND_PROGRAM(M_bg_CC NAMES mpixlcxx)
+FIND_PROGRAM(M_gnu_cc NAMES mpicc)
+FIND_PROGRAM(M_gnu_xx NAMES mpicxx)
+elseif (UNIX)
 # Compiler macros
 FIND_PROGRAM(M_gnu_cc NAMES gcc)
 FIND_PROGRAM(M_gnu_cxx NAMES g++)
@@ -120,28 +125,10 @@ FIND_PROGRAM(M_intel_CC NAMES icpc)
 FIND_PROGRAM(M_pg_cc NAMES pgcc)
 FIND_PROGRAM(M_pg_cxx NAMES pgCC)
 #TODO BG/Q
-endif (UNIX)
+endif ()
 
 include (checkMutateeCompiler.cmake)
 include (${DYNINST_PLATFORM}/cmake-compilers.txt)
-
-add_library (testA SHARED src/libtestA.c)
-add_library (testB SHARED src/libtestB.c)
-add_library (Test12 SHARED src/dyninst/libTest12.c)
-install (TARGETS testA testB Test12 LIBRARY DESTINATION ${INSTALL_DIR})
-
-# Can someone figure out how to clean this up? 
-if (${MUTATEE_gcc32dyn})
-if (${MUTATEE_gcc32dyn} STREQUAL "1")
-set (BUILD_LIBS_32 1)
-endif()
-endif()
-
-if (${MUTATEE_gcc64dyn}) 
-if (${MUTATEE_gcc64dyn} STREQUAL "1")
-set (BUILD_LIBS_64 1)
-endif()
-endif()
 
 if (BUILD_LIBS_32)
 add_library (testA_32 SHARED src/libtestA.c)

@@ -101,6 +101,9 @@ def print_one_cmakefile(exe, abi, stat_dyn, pic, opt, module, path, mlist, platf
    out.write("set (CMAKE_EXE_LINKER_FLAGS \"%s %s %s\")\n" % ( compiler['flags']['link'],
                                                                compiler['abiflags'][platform['name']][mut['abi']]['flags'],
                                                                linkage))
+   out.write("set (CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")\n")
+   out.write("set (CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS "")\n")
+
    
    out.write("include (%s/srclists.cmake)\n" % root)
    
@@ -267,20 +270,25 @@ def print_compiler_cmakefiles(mutatees, platform, info, cmakelists, cmake_compil
             # You want crazy? Apparently three underscores breaks CMAKE's regexp parser. So no
             # underscores!
             # And we can't redefine a variable as part of the cache, hence the two-level system.
+            # I could not figure out how to make CHECK_MUTATEE_COMPILER take a variant
+            # compiler command. If you can figure it out, fix it and remove the comments below.
+
             varname = 'MUTATEE_%s%s%s' % (exe.replace('+','x'), abi, stat_dyn)
             cmake_compilers.write("IF (DEFINED M_%s)\n" % c_compiler)
-            cmake_compilers.write("CHECK_MUTATEE_COMPILER (\"${M_%s}\"\n\t\"%s\"\n\t\"%s\"\n\tdummy%s)\n"
-                             % (c_compiler, c_flags, linkage, varname))
-            cmake_compilers.write("IF (dummy%s)\n" % varname)
-            cmake_compilers.write("SET (%s 1 CACHE STRING \"Build mutatess: compiler %s, ABI %s-bit, %s linked\")\n"
+#            cmake_compilers.write("CHECK_MUTATEE_COMPILER (\"${M_%s}\"\n\t\"%s\"\n\t\"%s\"\n\tdummy%s)\n"
+#                             % (c_compiler, c_flags, linkage, varname))
+#            cmake_compilers.write("IF (dummy%s)\n" % varname)
+            cmake_compilers.write("SET (%s ON CACHE STRING \"Build mutatees: compiler %s, ABI %s-bit, %s linked\")\n"
                                   % (varname, exe, abi, stat_dyn))
-            cmake_compilers.write("ENDIF()\n")
+            cmake_compilers.write("SET (BUILD_LIBS_%s 1)\n" % abi)
+            cmake_compilers.write("ELSE()\n")
+            cmake_compilers.write("SET (%s OFF CACHE STRING \"Build mutatees: compiler %s, ABI %s-bit, %s linked\")\n" % (varname, exe, abi, stat_dyn))
             cmake_compilers.write("ENDIF()\n")
 
    for exe, tmp1 in cmake_tree.iteritems():
       for abi, tmp2 in tmp1.iteritems():
          for stat_dyn, tmp3 in tmp2.iteritems():
-            cmakelists.write("if (${MUTATEE_%s%s%s})\n" % (exe.replace('+','x'), 
+            cmakelists.write("if (${MUTATEE_%s%s%s} STREQUAL \"ON\")\n" % (exe.replace('+','x'), 
                                                            abi, 
                                                            stat_dyn))
             for pic, tmp4 in tmp3.iteritems():

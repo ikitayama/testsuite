@@ -8,6 +8,8 @@ set (CMAKE_CXX_FLAGS_DEBUG ${CMAKE_C_FLAGS_DEBUG})
 set (CMAKE_CXX_FLAGS_RELEASE ${CMAKE_C_FLAGS_RELEASE})
 set (CMAKE_CXX_COMPILER ${CMAKE_C_COMPILER})
 set (CMAKE_EXE_LINKER_FLAGS "${MUTATEE_CXXFLAGS_NATIVE} ${MUTATEE_LDFLAGS_NATIVE} -tp px -m32 -Di386_unknown_linux2_4 -Dm32_test ")
+set (CMAKE_SHARED_LIBRARY_LINK_C_FLAGS )
+set (CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS )
 include (../../../../../../srclists.cmake)
 add_executable (pc_exec_targ.dyn_pgCC_32_pic_none ${SOURCE_LIST_28})
 

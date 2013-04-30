@@ -10,7 +10,7 @@ MACRO (CHECK_MUTATEE_COMPILER _COMPILER _COMP_FLAG _LINK_FLAG _RESULT)
    SET(CMAKE_C_COMPILER "${_COMPILER}")
    SET(CMAKE_EXE_LINKER_FLAGS "${_LINK_FLAG}")
    SET(CMAKE_C_FLAGS "${_COMP_FLAG}")
-
+   message(STATUS "Set compiler to ${CMAKE_C_COMPILER}")
    CHECK_C_SOURCE_COMPILES("#include <signal.h> \n int main(void) { return 0; }" ${_RESULT}
 
      # Some compilers do not fail with a bad flag
