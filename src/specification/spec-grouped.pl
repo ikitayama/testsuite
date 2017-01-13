@@ -1055,7 +1055,7 @@ test_mem_mutatee_aux(P, Aux) :-
         platform('power32', 'aix', _, P) -> Aux = 'test6LS-power.s';
         platform('i386', 'linux', _, P) -> Aux = 'test6LS-x86.asm';
         platform('i386', 'windows', _, P) -> Aux = 'test6LS-masm.asm';
-        platform('x86_64', 'linux', _, P) -> Aux = 'test6LS-x86_64.s';
+%        platform('x86_64', 'linux', _, P) -> Aux = 'test6LS-x86_64.s';
         platform('power32', 'linux', _, P) -> Aux = 'test6LS-powerpc.S';
         platform('power64', 'linux', _, P) -> Aux = 'test6LS-powerpc.S';
         platform('i386', 'freebsd', _, P) -> Aux = 'test6LS-x86.asm';
@@ -1067,7 +1067,7 @@ test_mem_platform(Platform) :-
         platform('power32', 'aix', _, Platform);
         platform('i386', 'linux', _, Platform);
         platform('i386', 'windows', _, Platform);
-        platform('x86_64', 'linux', _, Platform);
+%        platform('x86_64', 'linux', _, Platform);
         platform('i386', 'freebsd', _, Platform);
         platform('x86_64', 'freebsd', _, Platform).
 
